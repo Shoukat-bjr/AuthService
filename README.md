@@ -45,6 +45,8 @@ docker-compose exec notification_service sh
 5. Inside the container, install Composer dependencies:
 composer install
 
+6. Inside the container, run Laravel migration:
+php artisan migrate
 
 ## Service URLs
 
@@ -58,7 +60,7 @@ composer install
 2. Create a POST request for AuthService:
 - URL: [http://localhost:8080/user](http://localhost:8080/user)
 - Method: POST
-- Body: Form data (name, email, password)
+- Body: Form data (first_name, last_name, email)
 
 ## Post User Creation
 
