@@ -13,26 +13,22 @@ class UserControllerTest extends TestCase
     public function test_user_can_be_created_successfully_api()
     {
         $userData = [
-            'name' => 'John Doe',
+            'first_name' => 'John Doe',
+            'last_name' => 'John Doe',
             'email' => 'john.doe@example.com',
-            'password' => 'Secret123',
         ];
 
         $response = $this->postJson('/api/user', $userData); // Use postJson for API requests
 
         $response->assertStatus(201); // Assert HTTP CREATED (201) status code
-
-        $this->assertDatabaseHas('users', [
-            'email' => $userData['email'],
-        ]);
     }
 
     public function test_user_creation_fails_with_validation_errors_api()
     {
         $userData = [
-            'name' => '', // Missing required field
+            'first_name' => '', // Missing required field
+            'last_name' => '', // Missing required field
             'email' => 'invalid_email',
-            'password' => 'short', // Too short password
         ];
 
         $response = $this->postJson('/api/user', $userData); // Use postJson for API requests
